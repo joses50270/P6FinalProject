@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head lang='en'>
+        <title> ChatBot </title>
+        <meta charset = 'utf-8'>
+        <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">         <!-- Compiled and minified CSS -->
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>-->
+  <!-- Compiled and minified JavaScript -->
+  <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>  -->
+ <style>
+     *{
+         box-sizing: border-box;
+     }
+     body{
+         margin: 0;
+         padding: 0;
+         background: #333;
+         font-family: 'Tajawal', sans-serif;
+     }
+     .percent-count{
+         width: 450px;
+         height: 50px;
+         margin-top: 80px;
+         margin-bottom: 20px;
+         margin-left: 34%;
+         font-size: 50px;
+         text-align: center;
+         color: #fff;
+     }
+     .progress-bar{
+         width: 506px;
+         height: 18px;
+         background-color: #bbb;
+         border-radius: 13px;
+         padding: 3px;
+         margin: 50px auto;
+     }
+     .progress{
+         width: 25px;
+         height: 12px;
+         border-radius: 10px;
+         background-color: #f44336;
+     }
+     #btn{
+         display: none;
+         background-color: #f44336;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         font-size: 16px;
+         margin-top: 12%;
+         margin-left: 44%;
+         border-radius: 3px;
+         outline: none;
+     }
+     a{
+         text-decoration: none;
+         color: white;
+     }
+     .title{
+         color: white;
+         text-align: center;
+         margin-top: 15%;
+     }
+ </style>
+        
+    </head>
+    <body>
+        <h1 class='title'> Welcome To ChatBot </h1>
+        <div id='container'>
+       <div id='percentCount' class='percent-count'></div>
+       <div class='progress-bar'>
+           <div id='progress' class='progress'></div>
+       </div>
+       </div>
+       <button type='submit' id='btn'><a href='/start-conversation'>Get Started</a></button>
+        
+        
+        
+        
+        
+        
+        <script>
+            function progress(){
+                var prg = document.getElementById('progress');
+                var percent = document.getElementById('percentCount');
+                var container = document.getElementById('container');
+                var btn = document.getElementById('btn');
+                var counter = 5;
+                var progress = 25;
+                var id = setInterval(frame, 50);
+                
+                function frame(){
+                    if(progress === 500 && counter === 100){
+                        clearInterval(id);
+                        container.style.display = 'none';
+                        btn.style.display = 'block';
+                    }else{
+                        progress += 5;
+                        counter += 1;
+                        prg.style.width = progress + 'px';
+                        percent.innerHTML = counter + '%';
+                    }
+                }
+            }
+            progress();
+            
+        </script>
+    </body>
+</html>
