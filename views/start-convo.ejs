@@ -15,18 +15,243 @@
      .side1, .side2{
          flex: 1;
      }
+     body {
+        font: 15px arial, sans-serif;
+         background-color: #d9d9d9;
+         padding-top: 15px;
+         padding-bottom: 15px;
+        }       
+
+    #bodybox {
+         margin: auto;
+         max-width: 550px;
+         font: 15px arial, sans-serif;
+         background-color: white;
+         border-style: solid;
+         border-width: 1px;
+         padding-top: 20px;
+         padding-bottom: 25px;
+         padding-right: 25px;
+         padding-left: 25px;
+         box-shadow: 5px 5px 5px grey;
+         border-radius: 15px;
+        }
+
+    #chatborder {
+      border-style: solid;
+      background-color: #f6f9f6;
+      border-width: 3px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 15px;
+      padding-right: 20px;
+      padding-left: 15px;
+      border-radius: 15px;
+    }
+    
+    .chatlog {
+       font: 15px arial, sans-serif;
+    }
+    
+    #chatbox {
+      font: 17px arial, sans-serif;
+      height: 22px;
+      width: 100%;
+    }
+    
+    h1 {
+      margin: auto;
+    }
+    
+    pre {
+      background-color: #f0f0f0;
+      margin-left: 20px;
+    }
   </style>
+  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/464612/nlp_compromise.min.js">
+      
+  </script>
     </head>
     <body>
        
         <div class='container'>
             <div class='side1'>
-                
+                Welcome To ChatBot. Talk to it when you are alone. Which is basically everyday you loser.
             </div>
             <div class='side2'>
-                
+                <div id='bodybox'>
+                  <div id='chatborder'>
+                    <p id="chatlog7" class="chatlog">&nbsp;</p>
+                    <p id="chatlog6" class="chatlog">&nbsp;</p>
+                    <p id="chatlog5" class="chatlog">&nbsp;</p>
+                    <p id="chatlog4" class="chatlog">&nbsp;</p>
+                    <p id="chatlog3" class="chatlog">&nbsp;</p>
+                    <p id="chatlog2" class="chatlog">&nbsp;</p>
+                    <p id="chatlog1" class="chatlog">&nbsp;</p>
+                    <input type="text" name="chat" id="chatbox" placeholder="Hi there! Type here to talk to me." onfocus="placeHolder()">
+                  </div>
+                </div>
             </div>
         </div>
         
+        
+        
+        <script>
+            //links
+            //http://eloquentjavascript.net/09_regexp.html
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+            nlp = window.nlp_compromise;
+            
+            var messages = [], //array that hold the record of each string in chat
+              lastUserMessage = "", //keeps track of the most recent input string from the user
+              botMessage = "", //var keeps track of what the chatbot is going to say
+              botName = 'Chatbot', //name of the chatbot
+              userName = 'You', //name of the user
+              talking = true; //when false the speech function doesn't work
+              
+            //
+            //
+            //edit this function to change what the chatbot says
+            function chatbotResponse() {
+              talking = true;
+              botMessage = "I'm confused"; //the default message
+            
+              if (lastUserMessage === 'hi' || lastUserMessage =='hello') {
+                const hi = ['hi','howdy','hello',"what's shakin' bacon","What's crack-a-lackin'"]
+                botMessage = hi[Math.floor(Math.random()*(hi.length))];;
+              }
+            
+              if (lastUserMessage === 'name') {
+                botMessage = 'My name is ' + botName;
+              }
+              if (lastUserMessage.includes('?')){
+                  const question = ['How am I supposed to know?','Google it','Im here to talk, not to answer questions', 'Are you retarded?', 'You are about as smart as Ismael if you are asking that']
+                  botMessage = question[Math.floor(Math.random()*(question.length))];;
+              }
+              if(lastUserMessage.includes('ismael') || lastUserMessage.includes('Ismael')){
+                const ismael = 'Dont get me started on that weakness. He lightwork, weakass basketball skills.'
+                botMessage =ismael
+              } 
+              if(lastUserMessage.includes('ogre')){
+                const ogre = 'Ogres are like onions. Onions have layers. Ogres have layers. Onions have layers. You get it? We both have layers.'
+                botMessage = ogre
+              }
+              if(lastUserMessage.includes('jose') || lastUserMessage.includes('jose?') || lastUserMessage.includes('Jose') || lastUserMessage.includes('Jose?')){
+                const jose = 'Doesnt matter what you said or asked. Just pass him, give the man a passing grade. Actually just give him a 4 and a cinnamon roll. If not I am stealing your social security number.'
+                botMessage = jose
+              }
+              if(lastUserMessage.includes('martin') || lastUserMessage.includes('Martin')){
+                const martin = ['Get out me swamp', 'Someone give this guy a contract, he crossed Ismael out of his socks', 'Martin is love. Martin is life.... just like Shrek']
+                botMessage = martin[Math.floor(Math.random()*(martin.length))]
+              }
+              if(lastUserMessage.includes('misa') || lastUserMessage.includes('Misa') || lastUserMessage.includes('misael') || lastUserMessage.includes('Misael')){
+                const misa = 'He would chin check ismael. Knock his wierdass out under a minute. All for marissa'
+                botMessage = misa
+              }
+              if(lastUserMessage.includes('astor') || lastUserMessage.includes('Astor')){
+                const astor = ['Hey im kinda bored. Wanna put on deodorant for fun?', 'Someone give this man a plantation and a slave. Preferably Dawon.', 'This is the guy who says mayonnaise is spicy. Someone pray for him']
+                botMessage = astor[Math.floor(Math.random()*(astor.length))]
+              }
+              if(lastUserMessage === 'How is your day going?'){
+                const day = ['It was going great until you started typing', 'Im doing swell! How about you?', 'Shut up, dont talk to me loser']
+                botMessage = day[Math.floor(Math.random()*(day.length))]
+              }
+              if(lastUserMessage.includes('black people')){
+                const ppl = ['Thats like asking what are dogs. They are just pets', 'What. Are you racist?', 'What are rights?', 'Oh sorry did you say something?']
+                botMessage = ppl[Math.floor(Math.random()*(ppl.length))]
+              }
+              if(lastUserMessage.includes('im lonely')){
+                const lnly = ['Sounds like a personal problem', 'Go make some friends loser', "Let's talk", "Why are you here then? Go make some friends"]
+                botMessage = lnly[Math.floor(Math.random()*(lnly.length))]
+              }
+              if(lastUserMessage.includes('im bored')){
+                const brd = ['Then why are you here?', "That's because you are a boring person", "So am I"]
+                botMessage = brd[Math.floor(Math.random()*(brd.length))]
+              }
+              if(lastUserMessage.includes('Do you want to be my friend?')){
+                botMessage = 'Hell no'
+              }
+              if(lastUserMessage.includes('friends')){
+                const frnd = ['Must be nice, I dont have any friends', "Look I told you already that your plushies dont count as real friends okay.", "You cant lie to me. I know you have no friends"]
+                botMessage = frnd[Math.floor(Math.random()*(frnd.length))]
+              }
+            }
+            //****************************************************************
+            //****************************************************************
+            //****************************************************************
+            //****************************************************************
+            //****************************************************************
+            //****************************************************************
+            //****************************************************************
+            //
+            //
+            //
+            //this runs each time enter is pressed.
+            //It controls the overall input and output
+            function newEntry() {
+              //if the message from the user isn't empty then run 
+              if (document.getElementById("chatbox").value != "") {
+                //pulls the value from the chatbox ands sets it to lastUserMessage
+                lastUserMessage = document.getElementById("chatbox").value;
+                //sets the chat box to be clear
+                document.getElementById("chatbox").value = "";
+                //adds the value of the chatbox to the array messages
+                messages.push("<b>" + userName + ":</b> " + lastUserMessage);
+                //Speech(lastUserMessage);  //says what the user typed outloud
+                //sets the variable botMessage in response to lastUserMessage
+                chatbotResponse();
+                //add the chatbot's name and message to the array messages
+                messages.push("<b>" + botName + ":</b> " + botMessage);
+                // says the message using the text to speech function written below
+                Speech(botMessage);
+                //outputs the last few array elements of messages to html
+                for (var i = 1; i < 8; i++) {
+                  if (messages[messages.length - i])
+                    document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
+                }
+              }
+            }
+            
+            //text to Speech
+            //https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
+            function Speech(say) {
+              if ('speechSynthesis' in window && talking) {
+                var utterance = new SpeechSynthesisUtterance(say);
+                //msg.voice = voices[10]; // Note: some voices don't support altering params
+                //msg.voiceURI = 'native';
+                //utterance.volume = 1; // 0 to 1
+                //utterance.rate = 0.1; // 0.1 to 10
+                //utterance.pitch = 1; //0 to 2
+                //utterance.text = 'Hello World';
+                //utterance.lang = 'en-US';
+                speechSynthesis.speak(utterance);
+              }
+            }
+            
+            //runs the keypress() function when a key is pressed
+            document.onkeypress = keyPress;
+            //if the key pressed is 'enter' runs the function newEntry()
+            function keyPress(e) {
+              var x = e || window.event;
+              var key = (x.keyCode || x.which);
+              if (key == 13 || key == 3) {
+                //runs this function when enter is pressed
+                newEntry();
+              }
+              if (key == 38) {
+                console.log('hi')
+                  //document.getElementById("chatbox").value = lastUserMessage;
+              }
+            }
+            
+            //clears the placeholder text ion the chatbox
+            //this function is set to run when the users brings focus to the chatbox, by clicking on it
+            function placeHolder() {
+              document.getElementById("chatbox").placeholder = "";
+            }
+        </script>
     </body>
 </html>
